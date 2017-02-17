@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8">
+	<title>チャットアプリ with 松岡修造</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/login_style.css">
+</head>
+<body>
+  <h1>チャットアプリ with 松岡修造</h1>
+
+	<p class="description">ユーザ名を入力してください。</p>
+
+  <div class="container-fluid">
+    <div class="col-xs-4"><input type="text" class="form-control" id="name" maxlength="15"></div>
+    <button type="button" class="btn btn-primary" id="inRoomBtn" class="sendBtn">入室</button>
+  </div>
+
+	<div id="userList">
+		<table class="table">
+		  <thead>
+		    <tr><th>参加しているユーザ一覧</th></tr>
+		  </thead>
+		  <tbody>
+				<tr><td></tr></td>
+		  </tbody>
+		</table>
+	</div>
+
+  <script src="js/lib/socket.io-1.3.7.js"></script>
+  <script src="js/lib/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript">
+		var socket = io();
+		var userArray = {};
+
+		socket.emit("request_userlist");
+
+		// 入室ボタンを押した時の処理
+		$("#inRoomBtn").click(function () {
+			// 空文字チェック
+			if ($("#name").val() != "")
+				location.replace('./chat.html?' + $("#name").val());
+			else
+				alert("ユーザ名を入力してください！"); // 空文字の場合、アラートを表示
+		});
+
+		// サーバからユーザ一覧が送られた時の処理
+		socket.on("responce_userlist", function(userList) {
+			var userCount = Object.keys(userList["userlist"]).length;
+			if(0 < userCount){
+				var id = 1;
+						userArray = {};
+				while (1 < $('.table tr').length) // 一度リフレッシュ
+					$('.table tr').eq(1).remove();
+				for(var key in userList['userlist']){
+						username = userList['userlist'][key];
+						userArray[id] = username;
+						$('.table').append("<tr><td>　" + id + ". " + username + "</td></tr>");
+						id++;
+				}
+			}else if(userCount == 0){ //ユーザが1人もいなかった場合、1番上のテーブルの文章を変更
+				$('.table tr td').eq(0).text("　誰もいません...");
+			}
+		});
+	</script>
+</body>
+</html>

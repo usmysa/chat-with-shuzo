@@ -1,0 +1,189 @@
+html {
+    height: 100%;
+    background-color: #e6e9e9;
+    background-image: -webkit-linear-gradient(270deg,rgb(230,233,233) 0%,rgb(216,221,221) 100%);
+    background-image: linear-gradient(270deg,rgb(230,233,233) 0%,rgb(216,221,221) 100%);
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    margin: 0 auto;
+    padding: 2em 2em 4em;
+    width: 800px;
+    height: 100%;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5em;
+    color: #545454;
+    background-color: #ffffff;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
+}
+
+/*--- タイトル ---*/
+h1 {
+    font-weight: 600;
+    line-height: 1.3em;
+    padding: 0 0 1em 0.7em;
+}
+
+/*--- Notice ---*/
+h4 {
+    font-weight: 600;
+    margin-top: .5em;
+    text-align: center;
+    margin-bottom: 1.5em;
+}
+
+/*--- msg ---*/
+.msgArea_left{
+  width: 80%;
+  margin-bottom: .5em;
+}
+
+.msg_left{
+	position: relative;
+	padding: .5em .75em;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+}
+.msg_left::before,
+.msg_left::after{
+	position: absolute;
+	top: 25%;
+	left: -15px;
+	content: '';
+	height: 0;
+	width: 0;
+	border: 7px solid transparent;
+}
+.msg_left::before{
+	border-right: 8px solid #ccc;
+}
+.msg_left::after {
+  margin-left: 2px;
+	border-right: 8px solid #fff;
+}
+
+.msg_name {
+  padding: 0 0 .2em .5em;
+}
+
+.msg_time {
+  font-weight: 300;
+  font-size: .7em;
+}
+
+.msgArea_right {
+  width: 80%;
+  margin-left:auto;
+  text-align:right;
+  margin-bottom: 1.0em;
+}
+
+.msg_right {
+	position: relative;
+  text-align: left;
+	padding: .5em .7em;
+	background-color: #f0f0f0;
+	border-radius: 6px;
+	box-shadow: 2px 2px 4px rgba(0, 0, 0, .1) inset; /*2,2,4*/
+  word-wrap: break-word;
+}
+.msg_right::after {
+	position: absolute;
+	top: 25%;
+	right: -13px;
+	content: '';
+	width: 0;
+	height: 0;
+	border: 7px solid transparent;
+  border-left: 7px solid #e3e3e3;
+}
+
+/*--- bot ---*/
+.msgBot{
+  margin-bottom: .5em;
+}
+
+.msg_bot{
+  display: inline-block;
+  float: left;
+  margin-left: 1.5em;
+	padding: .5em .75em;
+  width: 50%;
+	background-color: #FFE545;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, .1);
+	border-radius: 6px;
+}
+
+.msg_bot::before{
+  content: "";
+  display: inline-block;
+  border: 10px solid transparent;
+  border-right-color: #FFE545;
+  position: relative;
+  left: -30px;
+  top: 50%;
+  margin-top: -9px;
+}
+
+.msgBot img{
+  float: left;
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+  border: 1px solid #FFE545;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, .1);
+}
+
+img.image_size {
+  width: 50%;
+  height: 50%;
+}
+
+/*--- Suggest ---*/
+#suggest {
+    position: absolute;
+    background-color: #fff;
+    border: 2px solid #e6e9e9;
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, .1);
+    font-size: 90%;
+    width: 250px;
+    margin-top: 2.2em;
+    margin-left: 1.7em;
+    z-index: 1;
+}
+#suggest div {
+    display: block;
+    width: 250px;
+    overflow: hidden;
+    white-space: nowrap;
+    z-index: 1;
+}
+
+#suggest div.select{ /* キー上下で選択した場合のスタイル */
+    color: #545454;
+    background-color: #FFE545;
+}
+#suggest div.over{ /* マウスオーバ時のスタイル */
+    background-color: #FFE545;
+}
+
+#explain {
+  padding: 0.5em 2em 0.5em;
+}
+
+#username, #usernum {
+  display: inline-block;
+  font-weight: bold;
+}
+
+#messages {
+  overflow: scroll; /*はみ出た場合、スクロールする*/
+  border: medium solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.3em;
+  padding: 0 2em 1em;
+  height: 77.5%;
+}
